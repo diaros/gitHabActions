@@ -21,13 +21,13 @@ jobs:
     needs: build-and-push
     steps:
     - name: deploy to cluster
-      uses: steebchen/kubectl@master
+      uses: steebchen/kubectl@v2.0.0
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
       with:
         args: set image --record deployment/my-app githubactions=${{ github.repository }}:${{ github.sha }}
     - name: verify deployment
-      uses: steebchen/kubectl@master
+      uses: steebchen/kubectl@v2.0.0
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         KUBECTL_VERSION: v1.22.4
